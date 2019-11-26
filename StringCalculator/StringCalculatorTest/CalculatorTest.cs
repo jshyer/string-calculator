@@ -46,16 +46,17 @@ namespace StringCalculatorTest
             Assert.Equal(expected, result);
         }
 
-        [Fact]
-        public void ReturnException_GivenMoreThanTwoNumbers()
-        {
-            static void TestCode() => Calculator.Add("1,2,3");
-            var exception = Assert.Throws<NoMoreThanTwoNumbersException>((Action)TestCode);
-        }
-
         [Theory]
         [InlineData(5, "5,tytyt")]
         public void Return0_GivenInvalidNumber(int expected, string input)
+        {
+            int result = Calculator.Add(input);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData(78, "1,2,3,4,5,6,7,8,9,10,11,12")]
+        public void ReturnSum_GivenMoreThanTwoNumbers(int expected, string input)
         {
             int result = Calculator.Add(input);
             Assert.Equal(expected, result);

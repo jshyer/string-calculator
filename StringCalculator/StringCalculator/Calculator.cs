@@ -21,10 +21,6 @@ namespace StringCalculator
                 {
                     string[] ints = numbers.Split(",");
                     List<int> numberList = new List<int>();
-                    if (ints.Length > 2)
-                    {
-                        throw new NoMoreThanTwoNumbersException(numbers);
-                    }
 
                     foreach(var i in ints)
                     {
