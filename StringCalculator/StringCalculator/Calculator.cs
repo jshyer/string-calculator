@@ -17,21 +17,18 @@ namespace StringCalculator
             }
             else
             {
-                if (numbers.Contains(","))
-                {
-                    string[] ints = numbers.Split(",");
-                    List<int> numberList = new List<int>();
+                char[] delimiters = { ',', '\n' };
+                string[] ints = numbers.Split(delimiters);
+                List<int> numberList = new List<int>();
 
-                    foreach(var i in ints)
+                foreach(var i in ints)
+                {
+                    if(int.TryParse(i, out int number))
                     {
-                        if(int.TryParse(i, out int number))
-                        {
-                            numberList.Add(number);
-                        }
+                        numberList.Add(number);
                     }
-                    return numberList.Sum();
                 }
-                return int.Parse(numbers);
+                return numberList.Sum();
             }
         }
     }

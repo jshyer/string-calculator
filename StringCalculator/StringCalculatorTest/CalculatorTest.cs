@@ -61,5 +61,14 @@ namespace StringCalculatorTest
             int result = Calculator.Add(input);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData(6, "1\n2,3")]
+        [InlineData(6, "1\n2\n3")]
+        public void ReturnSum_GivenNonCommaDelimiter(int expected, string input)
+        {
+            int result = Calculator.Add(input);
+            Assert.Equal(expected, result);
+        }
     }
 }
