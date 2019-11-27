@@ -31,16 +31,7 @@ namespace StringCalculatorTest
 
         [Theory]
         [InlineData(5001, "1,5000")]
-        [InlineData(1, "4,-3")]
         public void ReturnSum_GivenTwoNumbers(int expected, string input)
-        {
-            int result = Calculator.Add(input);
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData(1, "4,-3")]
-        public void ReturnDifference_GivenOnePositiveAndOneNegativeNumber(int expected, string input)
         {
             int result = Calculator.Add(input);
             Assert.Equal(expected, result);
@@ -69,6 +60,16 @@ namespace StringCalculatorTest
         {
             int result = Calculator.Add(input);
             Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [InlineData(-3, "4,-3")]
+        [InlineData(-1, "-11,10")]
+        public void ReturnExceptionWithMessage_GivenNegativeNumbers(int expected, string input)
+        {
+            var calculator = new Calculator();
+            var exception = Assert.Throws<NoNegativeNumbersException>(() => Calculator.Add(input));
+            Assert.Contains(expected.ToString(), exception.Message);
         }
     }
 }

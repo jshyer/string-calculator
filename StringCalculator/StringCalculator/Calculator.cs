@@ -28,7 +28,16 @@ namespace StringCalculator
                         numberList.Add(number);
                     }
                 }
+                DenyNegativeNumbers(numberList);
                 return numberList.Sum();
+            }
+
+        }
+        private static void DenyNegativeNumbers(List<int> numberList)
+        {
+            if (numberList.Any(x => x < 0))
+            {
+                throw new NoNegativeNumbersException(numberList);
             }
         }
     }
