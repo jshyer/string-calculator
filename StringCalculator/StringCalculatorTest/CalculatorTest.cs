@@ -92,5 +92,13 @@ namespace StringCalculatorTest
             int result = Calculator.Add(input);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData(110, "//[*][!!][r9r]\n11r9r22*hh*33!!44")]
+        public void ReturnSum_GivenMultipleAnyLengthDelimiters(int expected, string input)
+        {
+            int result = Calculator.Add(input);
+            Assert.Equal(expected, result);
+        }
     }
 }

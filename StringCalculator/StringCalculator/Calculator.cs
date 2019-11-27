@@ -50,7 +50,15 @@ namespace StringCalculator
                 string newDelimiter = numbers.Split('\n').First().Substring(2);
                 if (newDelimiter.StartsWith("["))
                 {
-                    delimiters.Add(newDelimiter.Substring(1, newDelimiter.Length - 2));
+                    if(newDelimiter.Count(x => x == '[') > 2)
+                    {
+                        string[] multipleDelimiters = newDelimiter.Split('[', ']');
+                        delimiters.AddRange(multipleDelimiters);
+                    }
+                    else
+                    {
+                        delimiters.Add(newDelimiter.Substring(1, newDelimiter.Length - 2));
+                    }
                 }
                 else
                 {
