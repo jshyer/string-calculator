@@ -80,5 +80,17 @@ namespace StringCalculatorTest
             int result = Calculator.Add(input);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData(66, "//[***]\n11***22***33")]
+        [InlineData(7, "//#\n2#5")]
+        [InlineData(8, "2,1001,6")]
+        [InlineData(6, "1\n2\n3")]
+        [InlineData(78, "1,2,3,4,5,6,7,8,9,10,11,12")]
+        public void ReturnSum_GivenOneCustomAnyLengthDelimiter(int expected, string input)
+        {
+            int result = Calculator.Add(input);
+            Assert.Equal(expected, result);
+        }
     }
 }

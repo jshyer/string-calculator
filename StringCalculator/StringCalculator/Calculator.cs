@@ -17,8 +17,8 @@ namespace StringCalculator
             }
             else
             {
-                char[] delimiters = GetDelimiters(numbers);
-                string[] ints = numbers.Split(delimiters);
+                string[] delimiters = GetDelimiters(numbers);
+                string[] ints = numbers.Split(delimiters, StringSplitOptions.None);
                 List<int> numberList = new List<int>();
 
                 foreach(var i in ints)
@@ -42,14 +42,20 @@ namespace StringCalculator
             }
         }
 
-        private static char[] GetDelimiters(string numbers)
+        private static string[] GetDelimiters(string numbers)
         {
-            var delimiters = new List<char> { ',' , '\n' };
+            var delimiters = new List<string> { "," , "\n" };
             if (numbers.StartsWith("//"))
             {
-                string newDelimiter = numbers.Split('\n').First();
-                char delimiter = newDelimiter.Substring(2, 1)[0];
-                delimiters.Add(delimiter);
+                string newDelimiter = numbers.Split('\n').First().Substring(2);
+                if (newDelimiter.StartsWith("["))
+                {
+                    delimiters.Add(newDelimiter.Substring(1, newDelimiter.Length - 2));
+                }
+                else
+                {
+                    delimiters.Add(newDelimiter);
+                }
             }
             return delimiters.ToArray();
         }
