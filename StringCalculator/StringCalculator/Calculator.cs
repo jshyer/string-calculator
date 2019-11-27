@@ -17,7 +17,7 @@ namespace StringCalculator
             }
             else
             {
-                char[] delimiters = { ',', '\n' };
+                char[] delimiters = GetDelimiters(numbers);
                 string[] ints = numbers.Split(delimiters);
                 List<int> numberList = new List<int>();
 
@@ -40,6 +40,18 @@ namespace StringCalculator
             {
                 throw new NoNegativeNumbersException(numberList);
             }
+        }
+
+        private static char[] GetDelimiters(string numbers)
+        {
+            var delimiters = new List<char> { ',' , '\n' };
+            if (numbers.StartsWith("//"))
+            {
+                string newDelimiter = numbers.Split('\n').First();
+                char delimiter = newDelimiter.Substring(2, 1)[0];
+                delimiters.Add(delimiter);
+            }
+            return delimiters.ToArray();
         }
     }
 }

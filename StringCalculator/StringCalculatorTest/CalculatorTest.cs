@@ -71,5 +71,14 @@ namespace StringCalculatorTest
             int result = Calculator.Add(input);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData(7, "//#\n2#5")]
+        [InlineData(102, "//,\n2,ff,100")]
+        public void ReturnSum_GivenOneCustomSingleCharacterDelimiter(int expected, string input)
+        {
+            int result = Calculator.Add(input);
+            Assert.Equal(expected, result);
+        }
     }
 }
