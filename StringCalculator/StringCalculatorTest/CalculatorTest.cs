@@ -30,14 +30,6 @@ namespace StringCalculatorTest
         }
 
         [Theory]
-        [InlineData(5001, "1,5000")]
-        public void ReturnSum_GivenTwoNumbers(int expected, string input)
-        {
-            int result = Calculator.Add(input);
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
         [InlineData(5, "5,tytyt")]
         public void Return0_GivenInvalidNumber(int expected, string input)
         {
@@ -70,6 +62,14 @@ namespace StringCalculatorTest
             var calculator = new Calculator();
             var exception = Assert.Throws<NoNegativeNumbersException>(() => Calculator.Add(input));
             Assert.Contains(expected.ToString(), exception.Message);
+        }
+
+        [Theory]
+        [InlineData(8, "2,1001,6")]
+        public void ReturnSum_IgnoreNumbersAbove1000(int expected, string input)
+        {
+            int result = Calculator.Add(input);
+            Assert.Equal(expected, result);
         }
     }
 }

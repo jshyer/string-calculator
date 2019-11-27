@@ -29,6 +29,7 @@ namespace StringCalculator
                     }
                 }
                 DenyNegativeNumbers(numberList);
+                numberList.RemoveAll(x => x > 1000);
                 return numberList.Sum();
             }
 
